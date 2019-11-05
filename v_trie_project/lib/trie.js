@@ -6,11 +6,11 @@ class Node {
 }
 
 class Trie {
-   constructor() {
-       this.root = new Node();
-   }
+    constructor() {
+        this.root = new Node();
+    }
 
-   insertRecur(word, root = this.root) {
+    insertRecur(word, root = this.root) {
         let letter = word[0];
         if (!(letter in root.children)) {
             root.children[letter] = new Node();
@@ -21,9 +21,9 @@ class Trie {
         } else {
             this.insertRecur(word.slice(1), root.children[letter]);
         }
-   }
+    }
 
-   insertIter(word) {
+    insertIter(word) {
         let pointer = this.root;
         let letter = word[0];
         while (word.length >= 1) { //n
@@ -35,9 +35,9 @@ class Trie {
             word = word.slice(1);
         }
         pointer.isTerminal = true;
-   }
+    }
 
-   searchRecur(word, root = this.root) {
+    searchRecur(word, root = this.root) {
         let letter = word[0];
         if (!(letter in root.children)) {
             return false;
@@ -48,9 +48,9 @@ class Trie {
         } else {
             return this.searchRecur(word.slice(1), root.children[letter]);
         }
-   }
+    }
    
-   searchIter(word){
+    searchIter(word){
         let pointer = this.root;
         let letter = word[0];
         // for(letter = word[0]; word.length >= 1; pointer = pointer.children[letter]){
@@ -63,11 +63,34 @@ class Trie {
                 return false;
         }
         return pointer.isTerminal;
-   }
+    }
 
-   wordsWithPrefix(prefix) {
-       
-   }
+    wordsWithPrefix(prefix, root = this.root) {
+        if (prefix.length === 0) {
+            let allWords = [];
+
+            if (root.isTerminal) allWords.push('');
+
+            for (let letter in root.children) {
+                let child = root.children[letter];
+
+                let suffixes = this.wordsWithPrefix('', child);
+                let words = suffixes.map(word => letter + word);
+                allWords.push(...words);
+            }
+            return allWords;
+        } else {
+            let firstLetter = prefix[0];
+            let child = root.children[firstLetter];
+
+            if (child === undefined) {
+                return [];
+            } else {
+                let suffixes = this.wordsWithPrefix(prefix.slice(1), root.children[firstLetter]);
+                return suffixes.map(suffix => firstLetter + suffix);
+            }
+        }
+    }
 }
 
 module.exports = {
