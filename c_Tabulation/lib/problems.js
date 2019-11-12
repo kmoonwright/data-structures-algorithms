@@ -59,6 +59,7 @@ function stepper(nums, memo = {}) {
 }
 
 
+
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
 // The function should return the maximum sum of elements in the array we can get if we cannot take
 // adjacent elements into the sum.
