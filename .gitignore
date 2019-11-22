@@ -1,1 +1,13 @@
 node_modules/
+/k_Binary_Search/node_modules
+/l_LinkedList/node_modules
+/m_LinkedListInterviewProblems/node_modules
+/n_Stack/node_modules
+/o_Queue_Project/node_modules
+/p_StackQueueProblems/node_modules
+/q_TreeOrderProject/node_modules
+/r_DFSandBFS/node_modules
+/s_BinarySearchTree/node_modules
+/t_Graphs/node_modules
+/u_Heaps_Project/node_modules
+/v_Trie_Project/node_modules
